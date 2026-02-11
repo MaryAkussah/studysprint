@@ -1,14 +1,21 @@
+import Card from "../components/ui/Card";
+import PageHeader from "../components/ui/PageHeader";
+
 function Dashboard() {
   return (
     <div>
-      <h1 style={{ marginTop: 0 }}>Dashboard</h1>
-      <p>Welcome to StudySprint. Track your topics and quiz progress daily.</p>
+      <PageHeader
+        title="Dashboard"
+        subtitle="Track your topics and quiz progress daily."
+      />
 
-      <ul>
-        <li>Today’s Target: 1 topic + 10 quiz questions</li>
-        <li>Streak: Coming soon</li>
-        <li>Progress: Coming soon</li>
-      </ul>
+      <Card>
+        <ul style={{ margin: 0, paddingLeft: 18 }}>
+          <li>Today’s Target: 1 topic + 10 quiz questions</li>
+          <li>Streak: Coming soon</li>
+          <li>Progress: Coming soon</li>
+        </ul>
+      </Card>
     </div>
   );
 }
