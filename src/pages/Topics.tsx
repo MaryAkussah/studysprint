@@ -1,19 +1,47 @@
-import Card from "../components/ui/Card";
 import PageHeader from "../components/ui/PageHeader";
+import TopicCard from "../components/ui/topics/TopicCard";
+import type { Topic } from "../types/topic";
+
+const sampleTopics: Topic[] = [
+  {
+    id: "t1",
+    title: "Fractions & Decimals",
+    subject: "Math",
+    status: "Not Started",
+  },
+  {
+    id: "t2",
+    title: "Parts of Speech",
+    subject: "English",
+    status: "In Progress",
+  },
+  {
+    id: "t3",
+    title: "Basic Electricity",
+    subject: "Science",
+    status: "Completed",
+  },
+];
 
 function Topics() {
+  const topics = sampleTopics; // later this becomes state + localStorage
+
   return (
     <div>
       <PageHeader
         title="Topics"
-        subtitle="This will become your topics tracker (CRUD) in Week 2."
+        subtitle="Your study topics (Week 2 will add CRUD + persistence)."
       />
 
-      <Card>
-        <p style={{ margin: 0 }}>
-          No topics yet. Tomorrow we’ll add the Topic List + Add Topic form.
-        </p>
-      </Card>
+      {topics.length === 0 ? (
+        <p style={{ color: "#555" }}>No topics yet. Add your first topic.</p>
+      ) : (
+        <div style={{ display: "grid", gap: 12 }}>
+          {topics.map((topic) => (
+            <TopicCard key={topic.id} topic={topic} />
+          ))}
+        </div>
+      )}
     </div>
   );
 }
