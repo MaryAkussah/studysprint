@@ -1,6 +1,8 @@
 import PageHeader from "../components/ui/PageHeader";
 import TopicCard from "../components/ui/topics/TopicCard";
 import type { Topic } from "../types/topic";
+import AddTopicForm from "../components/forms/AddTopicForm";
+
 
 const sampleTopics: Topic[] = [
   {
@@ -27,11 +29,14 @@ function Topics() {
   const topics = sampleTopics; // later this becomes state + localStorage
 
   return (
-    <div>
-      <PageHeader
-        title="Topics"
-        subtitle="Your study topics (Week 2 will add CRUD + persistence)."
-      />
+  <div>
+    <PageHeader
+      title="Topics"
+      subtitle="Your study topics (Week 2 will add CRUD + persistence)."
+    />
+
+    <div style={{ display: "grid", gap: 12 }}>
+      <AddTopicForm />
 
       {topics.length === 0 ? (
         <p style={{ color: "#555" }}>No topics yet. Add your first topic.</p>
@@ -43,7 +48,9 @@ function Topics() {
         </div>
       )}
     </div>
-  );
+  </div>
+);
+
 }
 
 export default Topics;
