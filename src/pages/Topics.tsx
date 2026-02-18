@@ -1,8 +1,9 @@
-import { useState } from "react";
 import PageHeader from "../components/ui/PageHeader";
 import AddTopicForm from "../components/forms/AddTopicForm";
-import TopicCard from "../components/topics/TopicCard";
+import TopicCard from "../components/ui/topics/TopicCard";
 import type { Topic } from "../types/topic";
+import { useLocalStorage } from "../hooks/useLocalStorage";
+
 
 const sampleTopics: Topic[] = [
   { id: "t1", title: "Fractions & Decimals", subject: "Math", status: "Not Started" },
@@ -11,7 +12,7 @@ const sampleTopics: Topic[] = [
 ];
 
 function Topics() {
-  const [topics, setTopics] = useState<Topic[]>(sampleTopics);
+const [topics, setTopics] = useLocalStorage<Topic[]>("studysprint_topics", sampleTopics);
 
   function handleCreate(topic: Topic) {
     setTopics((prev) => [topic, ...prev]);
