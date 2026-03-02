@@ -2,7 +2,7 @@ import PageHeader from "../components/ui/PageHeader";
 import AddTopicForm from "../components/forms/AddTopicForm";
 import TopicCard from "../components/ui/topics/TopicCard";
 import type { Topic } from "../types/topic";
-import { useLocalStorage } from "../hooks/useLocalStorage";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 
 const sampleTopics: Topic[] = [
@@ -13,10 +13,18 @@ const sampleTopics: Topic[] = [
 
 function Topics() {
 const [topics, setTopics] = useLocalStorage<Topic[]>("studysprint_topics", sampleTopics);
-
-  function handleCreate(topic: Topic) {
+const [editingTopic, setEditingTopic] = useState<Topic | null>(null);
+  
+function handleSave(topic: Topic) {
+  if (editingTopic) {
+    setTopics((prev) =>
+      prev.map((t) => (t.id === topic.id ? topic : t))
+    );
+    setEditingTopic(null);
+  } else {
     setTopics((prev) => [topic, ...prev]);
   }
+}
 
   return (
     <div>
@@ -26,13 +34,15 @@ const [topics, setTopics] = useLocalStorage<Topic[]>("studysprint_topics", sampl
       />
 
       <div style={{ display: "grid", gap: 12 }}>
-        <AddTopicForm onCreate={handleCreate} />
-
+<AddTopicForm
+  onCreate={handleSave}
+  editingTopic={editingTopic}
+/>
         {topics.length === 0 ? (
           <p style={{ color: "#555" }}>No topics yet. Add your first topic.</p>
         ) : (
           <div style={{ display: "grid", gap: 12 }}>
-            {topics.map((topic) => (
+            {topics.map((topic: Topic) => (
               <TopicCard key={topic.id} topic={topic} />
             ))}
           </div>
@@ -43,3 +53,5 @@ const [topics, setTopics] = useLocalStorage<Topic[]>("studysprint_topics", sampl
 }
 
 export default Topics;
+
+
