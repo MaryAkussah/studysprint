@@ -25,7 +25,6 @@ function handleSave(topic: Topic) {
     setTopics((prev) => [topic, ...prev]);
   }
 }
-
   return (
     <div>
       <PageHeader
