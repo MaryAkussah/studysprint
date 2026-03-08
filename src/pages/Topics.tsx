@@ -24,6 +24,13 @@ function handleSave(topic: Topic) {
   } else {
     setTopics((prev) => [topic, ...prev]);
   }
+   <div>
+        <PageHeader
+          title="Dashboard"
+          subtitle="Track your topics and quiz progress daily."
+        />
+
+        \
 }
   return (
     <div>
