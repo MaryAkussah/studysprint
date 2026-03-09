@@ -85,6 +85,15 @@ function AddTopicForm({ onCreate }: Props) {
       </form>
     </Card>
   );
+   <div>
+          <PageHeader
+            title="Dashboard"
+            subtitle="Track your topics and quiz progress daily."
+          />
+  
+          \
+  }
 }
 
 export default AddTopicForm;
+m                               
